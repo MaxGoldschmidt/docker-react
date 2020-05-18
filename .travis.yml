@@ -1,0 +1,11 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install: 
+  - docker build -t maxgoldschmidt/docker-react -f Dockerfile.dev .
+  - docker run maxgoldschmidt/docker-react
+
+script:
+  - docker run -e CI=true maxgoldschmidt/docker-react npm run test
